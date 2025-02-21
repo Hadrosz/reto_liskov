@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Empleado, EmpleadoPlanta, Contratista, EmpleadoPlantaSindicalizado } from '../models/empleado';
+import { Empleado } from '../models/empleado';
+import { EmpleadoPlanta } from '../models/empleadoPlanta';
+import { Contratista } from '../models/contratista';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +9,7 @@ import { Empleado, EmpleadoPlanta, Contratista, EmpleadoPlantaSindicalizado } fr
 export class NominaService {
   private empleados: Empleado[] = [
     new EmpleadoPlanta(1, 'Carlos Gómez', 5000),
-    new EmpleadoPlanta(2, 'Laura Pérez', 4800),
-    new Contratista(3, 'Ana Ramírez', 4000),
-    new EmpleadoPlantaSindicalizado(3, 'Pedro Fernández', 5200, 5)
+    new EmpleadoPlanta(2, 'Laura Pérez', 4800)
   ];
 
   obtenerEmpleados(): Empleado[] {
@@ -27,10 +27,9 @@ export class NominaService {
     }
   }
 
-  calcularImpuestos(): string[] {
+  calcularImpuestos(): number[] {
     return this.empleados.map(
-      (empleado) =>
-        `Impuestos de ${empleado.nombre}: $${empleado.calcularImpuestos()}`
+      (empleado) => empleado.calcularImpuestos()
     );
   }
 }

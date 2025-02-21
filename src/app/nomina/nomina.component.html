@@ -7,9 +7,7 @@
         <th>ID</th>
         <th>Nombre</th>
         <th>Salario</th>
-        <th>Tipo</th>
         <th>Impuestos</th>
-        <th>Factura</th>
       </tr>
     </thead>
     <tbody>
@@ -17,11 +15,7 @@
         <td>{{ empleado.id }}</td>
         <td>{{ empleado.nombre }}</td>
         <td>${{ empleado.salario }}</td>
-        <td>{{ esContratista(empleado) ? 'Contratista' : 'Empleado de Planta' }}</td>
-        <td>{{ impuestos[empleado.id - 1] }}</td>
-        <td *ngIf="esContratista(empleado)">
-          <button class="btn btn-success" (click)="registrarFactura(empleado.id)">Registrar Factura</button>
-        </td>
+        <td>${{ impuestos[empleado.id - 1] }}</td>
       </tr>
     </tbody>
   </table>

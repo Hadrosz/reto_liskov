@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NominaService } from '../services/nomina.service';
-import { Empleado, Contratista } from '../models/empleado';
+import { Empleado } from '../models/empleado';
+import { Contratista } from '../models/contratista';
 
 @Component({
   selector: 'app-nomina',
@@ -14,7 +15,7 @@ export class NominaComponent implements OnInit {
   private nominaService = inject(NominaService);
   empleados: Empleado[] = [];
   pagos: string[] = [];
-  impuestos: string[] = [];
+  impuestos: number[] = [];
 
   ngOnInit(): void {
     this.empleados = this.nominaService.obtenerEmpleados();
@@ -28,9 +29,5 @@ export class NominaComponent implements OnInit {
   registrarFactura(id: number): void {
     this.nominaService.registrarFacturaContratista(id);
     this.pagos = [];
-  }
-
-  esContratista(empleado: Empleado): boolean {
-    return empleado instanceof Contratista;
   }
 }
